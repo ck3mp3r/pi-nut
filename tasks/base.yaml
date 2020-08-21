@@ -1,0 +1,26 @@
+---
+- name: Run the equivalent of "apt-get update" as a separate step
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Update and install various packages.
+  become: yes
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - curl
+      - git 
+
+- name: Ensure a en_GB exists
+  become: yes
+  locale_gen:
+    name: en_GB.UTF-8
+    state: present
+
+- name: Ensure a en_US exists
+  become: yes
+  locale_gen:
+    name: en_US.UTF-8
+    state: present

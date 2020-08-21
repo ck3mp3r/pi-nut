@@ -1,0 +1,24 @@
+---
+- name: Install/upgrade video and motion packages.
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: latest
+  vars:
+    packages:
+      - motion
+
+- name: Ensure motion is enabled
+  become: yes
+  lineinfile:
+    path: /etc/default/motion
+    regexp: '^start_motion_daemon='
+    line: 'start_motion_daemon=yes'
+  notify: restart motion
+
+- name: Install motion configuration.
+  become: yes
+  copy:
+    src: motion.conf
+    dest: /etc/motion/motion.conf
+  notify: restart motion

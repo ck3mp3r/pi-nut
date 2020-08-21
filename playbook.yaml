@@ -1,0 +1,8 @@
+---
+#### setting up for all hosts
+- hosts: all
+  tasks:
+    - include_tasks: tasks/base.yaml
+    - include_tasks: tasks/motion.yaml
+  handlers:
+    - import_tasks: handlers/motion.yaml

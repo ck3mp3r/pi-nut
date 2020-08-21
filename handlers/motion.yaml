@@ -1,0 +1,8 @@
+---
+- name: restart motion
+  listen: restart motion
+  become: yes
+  service:
+    name: motion
+    state: restarted
+    enabled: yes
