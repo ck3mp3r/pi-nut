@@ -1,24 +1,74 @@
 ---
-- name: Install/upgrade video and motion packages.
+- name: Install/upgrade motion/motioneye depenencies.
   become: yes
   apt:
-    name: "{{ packages }}"
+    name:
+      - ffmpeg 
+      - libmariadb3
+      - libpq5
+      - libmicrohttpd12
+      - python-pip
+      - python-dev
+      - python-pillow
+      - libssl-dev
+      - libcurl4-openssl-dev
+      - libjpeg-dev
+      - libz-dev
     state: latest
-  vars:
-    packages:
-      - motion
 
-- name: Ensure motion is enabled
+- name: Install/upgrade motion package.
   become: yes
-  lineinfile:
-    path: /etc/default/motion
-    regexp: '^start_motion_daemon='
-    line: 'start_motion_daemon=yes'
-  notify: restart motion
+  apt:
+    deb: https://github.com/Motion-Project/motion/releases/download/release-4.2.2/pi_buster_motion_4.2.2-1_armhf.deb
+  notify: restart motioneye
 
-- name: Install motion configuration.
+  #- name: Ensure motion is enabled
+  #  become: yes
+  #  lineinfile:
+  #    path: /etc/default/motion
+  #    regexp: '^start_motion_daemon='
+  #    line: 'start_motion_daemon=yes'
+  #  notify: restart motion
+
+  #- name: Install motion configuration.
+  #  become: yes
+  #  copy:
+  #    src: motion.conf
+  #    dest: /etc/motion/motion.conf
+  #  notify: restart motion
+
+- name: Install motioneye.
+  become: yes
+  pip:
+    name: motioneye
+    executable: /usr/bin/pip 
+
+- name: Ensure motioneye config directory present.
+  become: yes
+  file:
+    path: /etc/motioneye
+    state: directory
+    mode: '0755'
+
+- name: Copy config for motioneye. 
   become: yes
   copy:
-    src: motion.conf
-    dest: /etc/motion/motion.conf
-  notify: restart motion
+    src: /usr/local/share/motioneye/extra/motioneye.conf.sample
+    dest: /etc/motioneye/motion.conf
+    remote_src: yes
+  notify: restart motioneye
+
+- name: Ensure motioneye media directory present.
+  become: yes
+  file:
+    path: /var/lib/motioneye
+    state: directory
+    mode: '0755'
+
+- name: Copy service script for motioneye. 
+  become: yes
+  copy:
+    src: /usr/local/share/motioneye/extra/motioneye.systemd-unit-local
+    dest: /etc/systemd/system/motioneye.service
+    remote_src: yes
+  notify: restart motioneye

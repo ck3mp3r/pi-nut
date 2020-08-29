@@ -6,3 +6,12 @@
     name: motion
     state: restarted
     enabled: yes
+
+- name: restart motioneye
+  listen: restart motioneye
+  become: yes
+  systemd:
+    daemon_reload: yes
+    name: motioneye
+    state: restarted
+    enabled: yes
