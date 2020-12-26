@@ -19,7 +19,7 @@
 - name: Install/upgrade motion package.
   become: yes
   apt:
-    deb: https://github.com/Motion-Project/motion/releases/download/release-4.2.2/pi_buster_motion_4.2.2-1_armhf.deb
+    deb: https://github.com/Motion-Project/motion/releases/download/release-4.3.2/pi_buster_motion_4.3.2-1_armhf.deb
   notify: restart motioneye
 
   #- name: Ensure motion is enabled
