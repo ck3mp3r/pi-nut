@@ -20,6 +20,7 @@
   become: yes
   apt:
     deb: https://github.com/Motion-Project/motion/releases/download/release-4.3.2/pi_buster_motion_4.3.2-1_armhf.deb
+  when: "'motion' not in ansible_facts.packages"
   notify: restart motioneye
 
   #- name: Ensure motion is enabled
@@ -53,9 +54,24 @@
 - name: Copy config for motioneye. 
   become: yes
   copy:
+    src: files/motioneye.conf
+    dest: /etc/motioneye/motioneye.conf
+  notify: restart motioneye
+
+- name: Copy config for motion. 
+  become: yes
+  copy:
     src: files/motion.conf
     dest: /etc/motioneye/motion.conf
   notify: restart motioneye
+
+- name: Copy config for motion camera. 
+  become: yes
+  copy:
+    src: files/camera-1.conf
+    dest: /etc/motioneye/camera-1.conf
+  notify: restart motioneye
+
 
 - name: Ensure motioneye media directory present.
   become: yes

@@ -4,12 +4,14 @@
   apt:
     update_cache: yes
 
+- name: Load package facts.
+  package_facts:
+    manager: auto
+
 - name: Update and install various packages.
   become: yes
   apt:
-    name: "{{ packages }}"
-  vars:
-    packages:
+    name:
       - curl
       - git 
       - python3-pip
