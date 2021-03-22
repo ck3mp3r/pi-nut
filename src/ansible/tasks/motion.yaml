@@ -65,13 +65,12 @@
     dest: /etc/motioneye/motion.conf
   notify: restart motioneye
 
-- name: Copy config for motion camera. 
+- name: Copy config for camera 1.
   become: yes
   copy:
     src: files/camera-1.conf
     dest: /etc/motioneye/camera-1.conf
   notify: restart motioneye
-
 
 - name: Ensure motioneye media directory present.
   become: yes
@@ -87,3 +86,21 @@
     dest: /etc/systemd/system/motioneye.service
     remote_src: yes
   notify: restart motioneye
+
+- name: start motioneye service at 6am.
+  become: yes
+  cron:
+    name: start motioneye service
+    minute: 0
+    hour: 6
+    user: root
+    job: "service motioneye start > /dev/null"
+
+- name: stop motioneye service at 21pm.
+  become: yes
+  cron:
+    name: stop motioneye service
+    minute: 0
+    hour: 21
+    user: root
+    job: "service motioneye stop > /dev/null"
