@@ -1,2 +1,2 @@
 ansible-playbook:
-	ansible-playbook -i inventory playbook.yaml
+	ansible-playbook -i src/ansible/inventory src/ansible/playbook.yaml

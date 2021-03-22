@@ -53,9 +53,8 @@
 - name: Copy config for motioneye. 
   become: yes
   copy:
-    src: /usr/local/share/motioneye/extra/motioneye.conf.sample
+    src: files/motion.conf
     dest: /etc/motioneye/motion.conf
-    remote_src: yes
   notify: restart motioneye
 
 - name: Ensure motioneye media directory present.
