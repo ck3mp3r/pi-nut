@@ -1,5 +1,0 @@
----
-- name: Copy servo script
-  copy:
-    src: files/servo.py
-    dest: /home/pi/servo.py

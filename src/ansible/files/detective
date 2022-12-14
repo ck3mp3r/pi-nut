@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import argparse
+import logging
+
+# create logger with 'spam_application'
+logger = logging.getLogger('spam_application')
+logger.setLevel(logging.DEBUG)
+
+# create file handler which logs even debug messages
+fh = logging.FileHandler('/tmp/detective.log')
+fh.setLevel(logging.DEBUG)
+logger.addHandler(fh)
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument("-i", "--image", help="Full path to image file.")
+args = parser.parse_args()
+
+
+def run_programm():
+    if args.image:
+        detect_squirrel(args.image)
+
+
+def detect_squirrel(image):
+    logger.debug(image)
+
+
+if __name__ == "__main__":
+    run_programm()

@@ -2,8 +2,9 @@
 #### setting up for all hosts
 - hosts: all
   tasks:
-    - include_tasks: tasks/base.yaml
-    - include_tasks: tasks/motion.yaml
-    - include_tasks: tasks/servo.yaml
+  # - include_tasks: tasks/base.yaml
+  # - include_tasks: tasks/tf-lite.yaml
+  - include_tasks: tasks/motion.yaml
+  - include_tasks: tasks/dispense.yaml
   handlers:
     - import_tasks: handlers/motion.yaml

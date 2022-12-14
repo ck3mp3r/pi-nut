@@ -1,17 +1,17 @@
 ---
 - name: restart motion
   listen: restart motion
-  become: yes
+  become: true
   service:
     name: motion
     state: restarted
-    enabled: yes
+    enabled: true
 
 - name: restart motioneye
   listen: restart motioneye
-  become: yes
+  become: true
   systemd:
-    daemon_reload: yes
+    daemon_reload: true
     name: motioneye
     state: restarted
-    enabled: yes
+    enabled: true
