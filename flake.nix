@@ -25,9 +25,12 @@
             delve
             go
             inetutils
+            podman
+            podman-tui
             python39
             python39Packages.pip
             python39Packages.virtualenv
+            qemu
           ];
 
           # env = [
