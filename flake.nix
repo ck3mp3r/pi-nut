@@ -30,15 +30,9 @@
             python39
             python39Packages.pip
             python39Packages.virtualenv
+            python39Packages.flask
             qemu
           ];
-
-          # env = [
-          #   {
-          #     name = "PATH";
-          #     prefix = "./misc/scripts/bin";
-          #   }
-          # ];
         };
     });
 }
