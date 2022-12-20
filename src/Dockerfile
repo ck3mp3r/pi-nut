@@ -1,7 +1,7 @@
 FROM python:3.8-slim-bullseye
 
 RUN python3 -m pip install tflite-runtime
-RUN mkdir -p /app
+RUN mkdir -p /app/tmp
 COPY src/python/requirements.txt /app
 RUN python3 -m pip install -r /app/requirements.txt
 
