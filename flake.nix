@@ -28,11 +28,20 @@
             podman
             podman-tui
             python39
-            python39Packages.pip
             python39Packages.virtualenv
-            python39Packages.flask
             qemu
           ];
+
+          devshell.startup.setup_sdk_path.text = ''
+            if [ ! -d .venv ]; then
+              virtualenv .venv
+              source .venv/bin/activate;
+              pip3 install -r ./src/python/requirements.txt
+            else
+              source .venv/bin/activate;
+            fi
+          '';
         };
     });
 }
+
