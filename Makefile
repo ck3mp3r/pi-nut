@@ -1,7 +1,7 @@
 ansible-playbook:
 	ansible-playbook -i src/ansible/inventory src/ansible/playbook.yaml
 
-docker:
+image:
 	podman build -t squirrel-serve:latest -f src/Dockerfile .
 
 run:
