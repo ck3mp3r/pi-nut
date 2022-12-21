@@ -2,13 +2,6 @@
 - name: Copy dispense script
   become: true
   copy:
-    src: files/dispense
+    src: ../../python/dispenser/dispense.py
     dest: /usr/local/bin/dispense
-    mode: +x
-
-- name: Copy detective script
-  become: true
-  copy:
-    src: files/detective
-    dest: /usr/local/bin/detective
     mode: +x

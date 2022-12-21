@@ -19,6 +19,7 @@
       - pigpiod
       - python3-pigpio
       - python3-pip
+      - python3-requests
       - python3-venv
 
 - name: Ensure a en_GB exists

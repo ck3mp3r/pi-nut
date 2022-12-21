@@ -36,7 +36,8 @@
             if [ ! -d .venv ]; then
               virtualenv .venv
               source .venv/bin/activate;
-              pip3 install -r ./src/python/requirements.txt
+              pip3 install -r ./src/python/server/requirements.txt
+              pip3 install -r ./src/python/dispenser/requirements.txt
             else
               source .venv/bin/activate;
             fi

@@ -8,6 +8,13 @@
       - motion
     state: present
 
+- name: adding motion user to gpio group 
+  become: true
+  user:
+    name: motion
+    groups: gpio
+    append: yes
+
 - name: setup directories
   become: true
   block:
