@@ -37,7 +37,7 @@ def predict_image():
 
     file = request.files.get('file', None)
 
-    if allowed_file(file.filename):
+    if file is not None and allowed_file(file.filename):
         image = Image.open(file.stream).convert(
             'RGB').resize((width, height))
         # Classify the image.
