@@ -41,7 +41,7 @@ def detect_squirrel(image):
     logger.debug(object)
     if (confidence > 40
             and any(word in object for word
-                    in ["squirrel", "mongoose", "hamster"])):
+                    in ["porcupine", "squirrel", "mongoose", "hamster"])):
         dispense()
 
 

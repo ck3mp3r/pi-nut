@@ -1,7 +1,14 @@
 ---
-- name: Copy dispense script
+- name: Copy auto-dispense script
   become: true
   copy:
     src: ../../python/dispenser/dispense.py
+    dest: /usr/local/bin/auto-dispense
+    mode: +x
+
+- name: Copy dispense script
+  become: true
+  copy:
+    src: files/dispense
     dest: /usr/local/bin/dispense
     mode: +x
