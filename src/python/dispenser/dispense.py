@@ -37,8 +37,7 @@ def detect_squirrel(image):
     confidence, object = (
         response.json()["confidence"], response.json()["object"])
 
-    logger.debug(confidence)
-    logger.debug(object)
+    logger.info(f"Detected {object} with {confidence}% certainty.")
     if (confidence > 40
             and any(word in object for word
                     in ["porcupine", "squirrel", "mongoose", "hamster"])):
